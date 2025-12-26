@@ -909,13 +909,12 @@ static int wifi_config_station_connect() {
         sysparam_get_string("wifi_ssid", &wifi_ssid);
         sysparam_get_string("wifi_password", &wifi_password);
 
-        if (!wifi_ssid) {
+        if (!wifi_ssid || wifi_ssid[0] == 0) {
                 ERROR("No configuration found");
                 if (wifi_password)
                         free(wifi_password);
                 return -1;
         }
-
         INFO("Connecting to %s", wifi_ssid);
 
         wifi_config_t sta_config;
@@ -1022,8 +1021,8 @@ void wifi_config_init2(const char *ssid_prefix, const char *password,
 
 
 void wifi_config_reset() {
-        sysparam_set_string("wifi_ssid", "");
-        sysparam_set_string("wifi_password", "");
+        sysparam_set_string("wifi_ssid", NULL);
+        sysparam_set_string("wifi_password", NULL);
 }
 
 
