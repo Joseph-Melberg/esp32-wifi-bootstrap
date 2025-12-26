@@ -89,7 +89,7 @@ static void sdk_wifi_set_opmode(int mode) {
 }
 
 static void sdk_wifi_get_macaddr(int iface, uint8_t *mac) {
-        esp_wifi_get_mac(iface == SOFTAP_IF ? WIFI_IF_AP : WIFI_IF_STA, mac);
+        esp_wifi_remote_get_mac(iface == SOFTAP_IF ? WIFI_IF_AP : WIFI_IF_STA, mac);
 }
 
 static void sdk_wifi_softap_get_config(wifi_config_t *cfg) {
